@@ -1,7 +1,8 @@
-import { useEffect, useState} from "react"
+import { useEffect, useRef, useState} from "react"
 
 export default function MainPanel(){
     const [msg, setMsg] = useState(false);
+    const ref = useRef<HTMLTableCellElement | null>(null)
 
     useEffect(()=>{
         let count = 0;
@@ -19,7 +20,7 @@ export default function MainPanel(){
 
     }, [msg])
 
-    function Wheel(event?: any){
+    function Wheel(event: any){
         let eventDelta: number = 0;
         setMsg(true);
 
@@ -39,10 +40,10 @@ export default function MainPanel(){
     
 
     return (
-        <div className="flex items-center justify-center relative">
+        <div className="flex items-center justify-center relative mt-40">
             {/* AJUSTAR PARA SCROLL OPACITY */}
 
-            <div id="wrapper" className="w-full max-w-[800px] h-[325px] bg-primaryColor2 flex items-center justify-flex-start overflow-auto rounded-lg gap-2 [-webkit-overflow-scrolling: touch;] snap-x snap-mandatory scroll-smooth scroll-wrapper relative" onWheel={e => Wheel(e)}>
+            <div id="wrapper" className="w-full max-w-[800px] h-[325px] bg-primaryColor2 flex items-center justify-flex-start overflow-x-auto overflow-y-hidden rounded-lg gap-2 [-webkit-overflow-scrolling: touch;] snap-x snap-mandatory scroll-smooth scroll-wrapper relative" onWheel={e => Wheel(e)}>
                 <div className="flex items-center justify-center bg-[url(./frutos-panel.jpg)] bg-center bg-cover w-full h-full flex-shrink-0 sticky scroll-smooth snap-start pointer-events-none">
         
                 </div>

@@ -4,6 +4,7 @@ export interface ProductsProps {
     photo: string,
     id: number,
     price: number
+    
 }
 
 export const Items:ProductsProps[] = [

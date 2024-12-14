@@ -1,14 +1,19 @@
 import { useEffect, useState } from 'react'
 import { Items, ProductsProps } from '../../../object'
+import axios from 'axios';
 
 interface SearchProps {
     search: string
 }
 
 export default function Products({ search} : SearchProps){
-    const [itens, setItens] = useState(Items);
+    const [itens, setItens] = useState<any>(Items);
 
     useEffect(()=>{
+        axios.get('http://localhost:3333/fruits').then((data)=>{
+            setItens(data.data)
+        })
+        
         if (search !== ''){
             let newList:any = [];
 
@@ -27,8 +32,9 @@ export default function Products({ search} : SearchProps){
         <div className='flex flex-col items-center justify-center relative p-10 gap-5'>
             <p className='text-orange-500 text-3xl'> CONFIRA NOSSOS PRODUTOS</p>
             <div className='w-full max-w-[1200px] flex justify-evenly gap-4 flex-wrap'>
-                {itens.map((e: ProductsProps, index) =>
+                {itens?.map((e: any, index: number) =>
                     <div key={index} className='border-2 w-[200px] h-[300px] flex flex-col justify-between'>
+                            
                         <div className='w-[100%] h-[125px] flex flex-col items-end overflow-hidden'> 
                             <img className='w-full' src={e.photo} alt="" />
                         </div>

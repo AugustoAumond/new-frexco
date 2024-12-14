@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Link } from "react-router-dom";
 
 export function UserAcess(){
     const [create, setCreate] = useState(false);
@@ -25,9 +26,11 @@ export function UserAcess(){
                     </div>
     
                     <div className="flex items-center justify-center w-full gap-4">
-                        <button onClick={()=>  setCreate(false)}  className="w-4/5 h-16 bg-secundaryColor1 border-2 border-orange-500 hover:text-primaryColor1 hover:bg-orange-500 rounded-lg" >
-                            <p className="text-2x1 text-primaryColor2">ENTRAR</p>
-                        </button>
+                        <Link to="/" className="w-4/5 h-16 bg-secundaryColor1 border-2 border-orange-500 hover:text-primaryColor1 hover:bg-orange-500 rounded-lg">
+                            <button className="w-full h-full">
+                                <p className="text-2x1 text-primaryColor2">ENTRAR</p>
+                            </button>
+                        </Link>
 
                         <button onClick={()=>  setCreate(true)}  className="w-4/5 h-16 bg-secundaryColor1 border-2 border-orange-500 hover:text-primaryColor1 hover:bg-orange-500 rounded-lg" >
                             <p className="text-2x1 text-primaryColor2">CRIAR CONTA</p>

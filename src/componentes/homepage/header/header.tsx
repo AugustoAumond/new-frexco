@@ -1,5 +1,6 @@
 import { FaUser } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 interface Header {
     setSearch: (e: string) => void;
@@ -19,7 +20,9 @@ export function Header({setSearch}:Header){
                     <div className="flex gap-2">
                         <FaUser className="size-5 hover:text-orange-500"/>
 
-                        <FaCartShopping className="size-5 hover:text-orange-500"/>
+                        <Link to={'/cart'}>
+                            <FaCartShopping className="size-5 hover:text-orange-500"/>
+                        </Link>
                     </div>
                     
                 </div>

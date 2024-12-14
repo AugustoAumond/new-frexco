@@ -26,3 +26,11 @@ body {
 .scroll-wrapper {
   scrollbar-width: none;
 }
+
+.swiper-button-next, .swiper-button-prev {
+  color: rgb(249 115 22);
+}
+
+.swiper-pagination-bullet-active {
+  background: rgb(249 115 22);
+}

@@ -3,8 +3,8 @@ export interface ProductsProps {
     name: string,
     photo: string,
     id: number,
-    price: number
-    
+    price?: number,   
+    quantidade?: number  
 }
 
 export const Items:ProductsProps[] = [

@@ -7,6 +7,7 @@ import "./index.css";
 import { UserAcess } from './routes/userAcess/userAcess.tsx';
 import { NewProduct } from './routes/newProduct/newProduct.tsx';
 import Cart from './routes/cart/cart.tsx';
+import { StateProvider } from './context/StateContex.tsx';
 
 const router = createBrowserRouter([
   {
@@ -28,7 +29,11 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <RouterProvider router={router}/>
-  </React.StrictMode>,
+
+    <React.StrictMode>
+      <StateProvider>
+        <RouterProvider router={router}/>
+      </StateProvider>
+    </React.StrictMode>
+ ,
 )

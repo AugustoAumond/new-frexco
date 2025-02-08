@@ -1,8 +1,17 @@
+import { useEffect } from "react";
+import { useStateContext } from "../../context/StateContex"
 
 export default function Cart(){
+    const {cartProducts} = useStateContext();
+
+    useEffect(()=>{
+        console.log(cartProducts);
+    }, [])
+
     return (
         <div className="w-full h-full flex items-center justify-center">
-            <div className="w-full min-h-[800px] max-w-[1200px] flex flex-col items-center gap-20 p-10">
+            {cartProducts?.map((item: any)=>(
+            <div key={item.id} className="w-full min-h-[800px] max-w-[1200px] flex flex-col items-center gap-20 p-10">
                 <div className="flex">
                     <p className="text-4xl text-orange-500">SEU CARRINHO</p>
                 </div>
@@ -64,7 +73,9 @@ export default function Cart(){
                     </div>
                 </div>
 
-            </div>
+                </div>
+            ))}
+
         </div>
     )
 }

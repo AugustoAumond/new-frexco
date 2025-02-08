@@ -1,12 +1,25 @@
-import { FaUser } from "react-icons/fa";
+import { useEffect, useState } from "react";
 import { FaCartShopping } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import { getChart } from "../../../storage/storageCart";
+import { useStateContext } from "../../../context/StateContex";
 
 interface Header {
     setSearch: (e: string) => void;
 }
 
 export function Header({setSearch}:Header){
+    const {productsCart} = useStateContext();
+
+    const [numberChart, setNumberChart] = useState(0);
+
+    useEffect(()=>{
+
+        console.log(productsCart.length)
+
+        setNumberChart(productsCart.length);
+    }, [productsCart])
+
     return (
         <div className="bg-white w-full p-4 bg-primaryColor2 flex items-center justify-center fixed z-10">
             <div className="max-w-[1200px] w-full h-full flex items-center justify-between flex-col gap-4 md:flex-row">
@@ -17,11 +30,12 @@ export function Header({setSearch}:Header){
                         <input type="text" className="text-lg w-full border-2 border-primaryColor1 rounded-lg p-1" onChange={(e) => setSearch(e.currentTarget.value)} placeholder="Qual produto você está procurando?"/>
                     </div>
 
-                    <div className="flex gap-2">
-                        <FaUser className="size-5 hover:text-orange-500"/>
-
+                    <div className="relative flex gap-2 items-start">
                         <Link to={'/cart'}>
-                            <FaCartShopping className="size-5 hover:text-orange-500"/>
+                            <div className="flex items-start gap-1">
+                                <FaCartShopping className={`size-8 hover:text-orange-500 ${numberChart > 0 ? 'text-orange-500' : ''}`}/>
+                                <span className="absolute -top-2 -right-2 text-orange-500">{numberChart}</span>
+                            </div>                           
                         </Link>
                     </div>
                     

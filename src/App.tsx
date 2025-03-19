@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import { Header } from './componentes/homepage/header/header'
 import MainPanel from './componentes/homepage/main-panel/main-panel'
@@ -8,13 +8,13 @@ import { getChart } from './storage/storageCart'
 
 export default function App() {
   const [search, setSearch] = useState<string>('');
-  const {productsCart, setProductsCart} = useStateContext();
+  const { updateChart} = useStateContext();
 
   useEffect(()=>{
-    const storage = JSON.parse(getChart());
+    let storage = JSON.parse(getChart());
 
-    if (productsCart === undefined){
-      setProductsCart([storage]);
+    if (storage !== undefined){
+      updateChart([...JSON.parse(storage)]);
     }
 
   }, [])

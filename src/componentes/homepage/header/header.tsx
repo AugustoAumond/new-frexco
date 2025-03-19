@@ -1,24 +1,16 @@
-import { useEffect, useState } from "react";
 import { FaCartShopping } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import { getChart } from "../../../storage/storageCart";
 import { useStateContext } from "../../../context/StateContex";
 
-interface Header {
+interface HeaderProps {
     setSearch: (e: string) => void;
 }
 
-export function Header({setSearch}:Header){
+export function Header(
+    {
+    setSearch
+    }:HeaderProps){
     const {productsCart} = useStateContext();
-
-    const [numberChart, setNumberChart] = useState(0);
-
-    useEffect(()=>{
-
-        console.log(productsCart.length)
-
-        setNumberChart(productsCart.length);
-    }, [productsCart])
 
     return (
         <div className="bg-white w-full p-4 bg-primaryColor2 flex items-center justify-center fixed z-10">
@@ -33,8 +25,8 @@ export function Header({setSearch}:Header){
                     <div className="relative flex gap-2 items-start">
                         <Link to={'/cart'}>
                             <div className="flex items-start gap-1">
-                                <FaCartShopping className={`size-8 hover:text-orange-500 ${numberChart > 0 ? 'text-orange-500' : ''}`}/>
-                                <span className="absolute -top-2 -right-2 text-orange-500">{numberChart}</span>
+                                <FaCartShopping className={`size-8 hover:text-orange-500 ${productsCart.length > 0 ? 'text-orange-500' : ''}`}/>
+                                <span className="absolute -top-2 -right-2 text-orange-500">{productsCart.length}</span>
                             </div>                           
                         </Link>
                     </div>

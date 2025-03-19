@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useContext,  useState } from "react";
 
 export const StateContext = createContext<any>(null); 
 
@@ -17,8 +17,12 @@ interface productCartProps {
 export function StateProvider({children}: StateProviderProps){
     const [productsCart, setProductsCart] = useState<productCartProps[] | undefined>([]);
 
+    function updateChart(item: any){
+        setProductsCart(item)
+    }
+
     return (
-        <StateContext.Provider value={{productsCart, setProductsCart}}>
+        <StateContext.Provider value={{productsCart, updateChart}}>
             {children}
         </StateContext.Provider>
     )

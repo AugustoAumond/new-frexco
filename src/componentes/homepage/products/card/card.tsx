@@ -1,28 +1,25 @@
-import { useEffect, useState } from "react"
+import {  useState } from "react"
 import { ProductsProps } from "../../../../object"
+import { useStateContext } from "../../../../context/StateContex" 
+import { setChart } from "../../../../storage/storageCart"
 
 interface CardProps {
     photo: string
     name: string
     price: number | undefined
     products: ProductsProps
-    AddChart: (e1: ProductsProps, quantidade?: number) => void
     id: number
 }
 
 export default function Card({
-    AddChart,
     name,
     photo,
     price,
     id
     
 }:CardProps){
-    const [quantidadeProduct, setQuantidadeProduct] = useState<number | undefined>(0);
-
-    useEffect(()=>{
-    
-    }, [quantidadeProduct] )
+    const [quantidadeProduct, setQuantidadeProduct] = useState<number | undefined | string>('');
+    const {productsCart, updateChart} = useStateContext();
 
     function SetChart(){
         let Item: ProductsProps = {
@@ -32,7 +29,23 @@ export default function Card({
             price: price,
             quantidade: quantidadeProduct
         }
-        AddChart(Item)
+
+        const idExiste = productsCart.some((product: any) => product.id === Item.id);
+
+        if (idExiste){
+            productsCart.map((product: ProductsProps) => {
+                if (product.id === Item.id){
+                    product.quantidade =  Number(product.quantidade) + Number(quantidadeProduct);
+                }
+            });
+            setChart(productsCart);
+            updateChart(productsCart);
+        } else {
+            setChart(productsCart ? [...productsCart, Item] : [Item]);
+            updateChart(productsCart ? [...productsCart, Item] : [Item]);
+        }
+        
+        setQuantidadeProduct('');
     }
 
     return (
@@ -53,11 +66,11 @@ export default function Card({
 
         <div className='flex items-center justify-center gap-2 pb-2'>
         
-            <input required type="number" value={quantidadeProduct} onChange={ (e: any) => setQuantidadeProduct(e.currentTarget.value)} placeholder='Quantidade' className='[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none w-[40%] border-2 border-orange-500 rounded-lg placeholder:text-orange-500  bg-transparent px-1 font-serif text-center' maxLength={3}/>
+            <input required type="number" value={`${quantidadeProduct}`} onChange={ (e: any) => setQuantidadeProduct(e.currentTarget.value)} placeholder='Kg' className='[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none w-[40%] border-2 border-orange-500 rounded-lg placeholder:text-orange-500  bg-transparent px-1 font-serif text-center' maxLength={3}/>
         
 
-            <button className="w-[40%] p-1/2 bg-secundaryColor1 border-2 border-orange-500 hover:text-primaryColor1 hover:bg-orange-500 rounded-lg">
-                <p onClick={() => SetChart() } className="text-2x1 text-orange-500 hover:text-primaryColor1">Adicionar</p>
+            <button disabled={quantidadeProduct === ''}  onClick={() => SetChart() } className="w-[40%] p-1/2 bg-secundaryColor1 border-2 border-orange-500 hover:text-primaryColor1 hover:bg-orange-500 rounded-lg">
+                <p className="text-2x1 text-orange-500 hover:text-primaryColor1">Adicionar</p>
             </button>
         </div>
     </div>

@@ -32,7 +32,7 @@ export default function MainPanel(){
            
                 >
                     <SwiperSlide> <div className="flex items-center justify-center bg-[url(./frutos-panel.jpg)] bg-center bg-cover w-full h-full flex-shrink-0 sticky scroll-smooth snap-start pointer-events-none"></div></SwiperSlide>
-                    <SwiperSlide> <div className="flex items-center justify-center bg-[url(./frutas-colhidas.jpg)] bg-center bg-cover w-full h-full flex-shrink-0 sticky scroll-smooth snap-start pointer-events-none"></div></SwiperSlide>
+                    <SwiperSlide> <div className="flex items-center justify-center bg-[url(./photos_items/frutas-colhidas.jpg)] bg-center bg-cover w-full h-full flex-shrink-0 sticky scroll-smooth snap-start pointer-events-none"></div></SwiperSlide>
                     <SwiperSlide> <div className="flex items-center justify-center bg-[url(./pequeno-agricultor.jpg)] bg-center bg-cover w-full h-full flex-shrink-0 sticky scroll-smooth snap-start pointer-events-none"></div></SwiperSlide>
                 ...
                 </Swiper>

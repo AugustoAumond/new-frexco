@@ -32,8 +32,8 @@ export default function MainPanel(){
            
                 >
                     <SwiperSlide> <div className="flex items-center justify-center  bg-center bg-cover w-full h-full flex-shrink-0 sticky scroll-smooth snap-start pointer-events-none"> <img className='flex w-full h-full' src="./frutos-panel.jpg" alt="" /></div></SwiperSlide>
-                    <SwiperSlide> <div className="flex items-center justify-center bg-[url(./photos_items/frutas-colhidas.jpg)] bg-center bg-cover w-full h-full flex-shrink-0 sticky scroll-smooth snap-start pointer-events-none"></div></SwiperSlide>
-                    <SwiperSlide> <div className="flex items-center justify-center bg-[url(./pequeno-agricultor.jpg)] bg-center bg-cover w-full h-full flex-shrink-0 sticky scroll-smooth snap-start pointer-events-none"></div></SwiperSlide>
+                    <SwiperSlide> <div className="flex items-center justify-center bg-[url(./photos_items/frutas-colhidas.jpg)] bg-center bg-cover w-full h-full flex-shrink-0 sticky scroll-smooth snap-start pointer-events-none"><img className='flex w-full h-full' src="./frutas-colhidas.jpg" alt="" /></div></SwiperSlide>
+                    <SwiperSlide> <div className="flex items-center justify-center bg-[url(./pequeno-agricultor.jpg)] bg-center bg-cover w-full h-full flex-shrink-0 sticky scroll-smooth snap-start pointer-events-none"><img className='flex w-full h-full' src="./pequeno-agricultor.jpg" alt="" /></div></SwiperSlide>
                 ...
                 </Swiper>
             </div>

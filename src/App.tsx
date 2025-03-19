@@ -12,8 +12,8 @@ export default function App() {
 
   useEffect(()=>{
     let storage = JSON.parse(getChart());
-
-    if (storage !== undefined){
+    
+    if (storage){
       updateChart([...JSON.parse(storage)]);
     }
 

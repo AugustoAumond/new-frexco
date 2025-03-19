@@ -36,7 +36,7 @@ export default function Cart(){
                     <div key={item.id}  className="flex w-full justify-between">
                         <div className="w-full flex-1 flex flex-col gap-2">
                             <div className="flex justify-between w-full max-w-[700px] h-30 p-5 gap-10  border-b-2">
-                                <img src={item.photo} alt="" />
+                                <img className="w-[150px] h-[120px]" src={item.photo} alt="" />
 
                                 <div className="flex flex-col items-center justify-evenly min-h-full">
                                     <div>

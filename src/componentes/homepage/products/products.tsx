@@ -29,9 +29,15 @@ export default function Products(
     }, [search, productsCart] )
 
     return (
-        <div className='flex flex-col items-center justify-center relative p-10 gap-5'>
-            <p className='text-orange-500 text-3xl'> CONFIRA NOSSOS PRODUTOS</p>
-            <div className='w-full max-w-[1050px] flex justify-evenly gap-4 flex-wrap'>
+        <section className='relative mx-auto w-full max-w-[1280px] px-4 pb-20 pt-10 sm:px-6'>
+            <div className='mb-10 flex flex-col gap-3 border-b border-[#315c46]/15 pb-6 sm:flex-row sm:items-end sm:justify-between'>
+                <div>
+                    <p className='text-xs font-bold uppercase tracking-[0.2em] text-[#e5872e]'>Selecao da estacao</p>
+                    <h2 className="mt-2 font-['Playfair_Display'] text-4xl font-bold tracking-tight text-[#18372c] sm:text-5xl">Sabores que vem da terra.</h2>
+                </div>
+                <p className='text-sm text-[#597466]'>{itens.length} {itens.length === 1 ? 'produto encontrado' : 'produtos encontrados'}</p>
+            </div>
+            <div className='grid grid-cols-1 gap-5 min-[480px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
                 {itens?.map((e: any, index: number) =>
                     <Card
                     key={index}
@@ -44,6 +50,7 @@ export default function Products(
                 )}
 
             </div>
-        </div>
+            {itens.length === 0 && <div className="rounded-3xl border border-dashed border-[#315c46]/25 bg-white px-6 py-16 text-center text-[#597466]">Nenhum produto encontrado. Tente outro termo.</div>}
+        </section>
     )
 }

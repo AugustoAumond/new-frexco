@@ -49,30 +49,32 @@ export default function Card({
     }
 
     return (
-    <div className='border-2 w-[200px] h-[300px] flex flex-col justify-between'>
-        <div className='w-[100%] h-[125px] flex flex-col items-end overflow-hidden'> 
-            <img className='w-full' src={photo} alt="" />
+    <article className='group flex min-h-[390px] flex-col overflow-hidden rounded-3xl border border-[#315c46]/10 bg-white p-3 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#315c46]/10'>
+        <div className='relative h-[185px] overflow-hidden rounded-2xl bg-[#edf3e7]'>
+            <img className='h-full w-full object-contain p-5 transition duration-500 group-hover:scale-110' src={photo} alt={name} />
+            <span className='absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-[#315c46] shadow-sm'>Fresco</span>
         </div>
 
-        <div className='flex flex-col justify-evenly p-4 gap-4'>
-            <div className='flex items-center gap-2'>
-                <span className='text-orange-500 text-2xl '>Nome:</span> <p className='text-white text-2xl'> {name}</p>
+        <div className='flex flex-1 flex-col px-2 pb-1 pt-5'>
+            <div className='flex items-start justify-between gap-2'>
+                <div>
+                    <p className='text-xs font-semibold uppercase tracking-[0.16em] text-[#82988b]'>Direto do campo</p>
+                    <h3 className="mt-1 font-['Playfair_Display'] text-3xl font-bold text-[#18372c]">{name}</h3>
+                </div>
+                <p className='whitespace-nowrap pt-1 text-lg font-bold text-[#315c46]'>R$ {price?.toFixed(2).replace('.', ',')}</p>
             </div>
-
-            <div className='text-lg flex w-full gap-2'>
-                <span className='text-orange-500 text-2xl '>Valor:</span> <p className='text-white text-2xl'>R$ {price}</p>
-            </div>
+            <p className='mt-1 text-sm text-[#597466]'>Preco por quilograma</p>
         </div>
 
-        <div className='flex items-center justify-center gap-2 pb-2'>
-        
-            <input required type="number" value={`${quantidadeProduct}`} onChange={ (e: any) => setQuantidadeProduct(e.currentTarget.value)} placeholder='Kg' className='[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none w-[40%] border-2 border-orange-500 rounded-lg placeholder:text-orange-500  bg-transparent px-1 font-serif text-center' maxLength={3}/>
-        
-
-            <button disabled={quantidadeProduct === ''}  onClick={() => SetChart() } className="w-[40%] p-1/2 bg-secundaryColor1 border-2 border-orange-500 hover:text-primaryColor1 hover:bg-orange-500 rounded-lg">
-                <p className="text-2x1 text-orange-500 hover:text-primaryColor1">Adicionar</p>
+        <div className='flex items-center gap-2 border-t border-[#315c46]/10 px-2 pt-4'>
+            <label className='flex h-11 w-[76px] items-center rounded-xl border border-[#315c46]/15 bg-[#f6f8f2] px-2 focus-within:border-[#315c46]'>
+                <input required min="0.1" step="0.1" type="number" value={`${quantidadeProduct}`} onChange={ (e: any) => setQuantidadeProduct(e.currentTarget.value)} placeholder='Kg' aria-label={`Quantidade de ${name} em quilogramas`} className='[appearance:textfield] w-full bg-transparent text-center text-sm font-semibold text-[#18372c] outline-none placeholder:text-[#82988b] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'/>
+                <span className='text-xs text-[#597466]'>kg</span>
+            </label>
+            <button disabled={quantidadeProduct === ''} onClick={() => SetChart() } className="h-11 flex-1 rounded-xl bg-[#18372c] px-3 text-sm font-bold text-[#fffdf8] shadow-md shadow-[#18372c]/15 transition hover:bg-[#315c46] disabled:cursor-not-allowed disabled:bg-[#b9c8b4] disabled:shadow-none">
+                Adicionar
             </button>
         </div>
-    </div>
+    </article>
     )
 }

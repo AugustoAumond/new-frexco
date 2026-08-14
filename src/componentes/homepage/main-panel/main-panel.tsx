@@ -12,15 +12,10 @@ import 'swiper/css/autoplay';
 import { A11y, Pagination, Scrollbar, Navigation, Autoplay,  EffectFade} from 'swiper/modules';
 
 export default function MainPanel(){
-
-    
-
     return (
-        <div className="flex items-center justify-center relative mt-40">
-            {/* AJUSTAR PARA SCROLL OPACITY */}
-            <div id="wrapper" className="w-full max-w-[800px] h-[325px] bg-primaryColor2 flex items-center justify-flex-start overflow-x-auto overflow-y-hidden rounded-lg gap-2 [-webkit-overflow-scrolling: touch;] snap-x snap-mandatory scroll-smooth scroll-wrapper relative">
-                <Swiper  className='mySwiper w-full h-full'
-                // install Swiper modules
+        <section className="px-4 pb-8 pt-32 sm:px-6 sm:pt-36">
+            <div className="relative mx-auto h-[440px] w-full max-w-[1200px] overflow-hidden rounded-[2rem] bg-[#18372c] shadow-2xl shadow-[#18372c]/20 sm:h-[500px]">
+                <Swiper className='mySwiper h-full w-full'
                 modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay, EffectFade]}
                 spaceBetween={20}
                 slidesPerView={1}
@@ -29,13 +24,33 @@ export default function MainPanel(){
                 autoplay={true}
                 pagination={{ clickable: true }}
                 effect={'fade'}
-           
                 >
-                    <SwiperSlide> <div className="flex items-center justify-center  bg-center bg-cover w-full h-full flex-shrink-0 sticky scroll-smooth snap-start pointer-events-none"> <img className='flex w-full h-full' src="./frutos-panel.jpg" alt="" /></div></SwiperSlide>
-                    <SwiperSlide> <div className="flex items-center justify-center bg-[url(./photos_items/frutas-colhidas.jpg)] bg-center bg-cover w-full h-full flex-shrink-0 sticky scroll-smooth snap-start pointer-events-none"><img className='flex w-full h-full' src="./frutas-colhidas.jpg" alt="" /></div></SwiperSlide>
-                    <SwiperSlide> <div className="flex items-center justify-center bg-[url(./pequeno-agricultor.jpg)] bg-center bg-cover w-full h-full flex-shrink-0 sticky scroll-smooth snap-start pointer-events-none"><img className='flex w-full h-full' src="./pequeno-agricultor.jpg" alt="" /></div></SwiperSlide>
-                ...
+                    <SwiperSlide><HeroSlide image="/frutos-panel.jpg" eyebrow="Frescor que chega perto" title="Da fazenda para a sua mesa." text="Frutas selecionadas para deixar a sua rotina mais saborosa." /></SwiperSlide>
+                    <SwiperSlide><HeroSlide image="/frutas-colhidas.jpg" eyebrow="Colheita da semana" title="Mais cor, mais vida no seu prato." text="Descubra produtos que respeitam o tempo e o sabor da natureza." /></SwiperSlide>
+                    <SwiperSlide><HeroSlide image="/pequeno-agricultor.jpg" eyebrow="Origem que importa" title="Pequenos produtores, grandes historias." text="Cada pedido apoia quem cultiva alimentos de verdade." /></SwiperSlide>
                 </Swiper>
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-28 bg-gradient-to-t from-[#18372c]/35 to-transparent" />
+            </div>
+        </section>
+    )
+}
+
+interface HeroSlideProps {
+    image: string;
+    eyebrow: string;
+    title: string;
+    text: string;
+}
+
+function HeroSlide({ image, eyebrow, title, text }: HeroSlideProps) {
+    return (
+        <div className="relative h-full w-full">
+            <img src={image} alt="Producao agricola Frexco" className="h-full w-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#10291f]/90 via-[#18372c]/45 to-transparent" />
+            <div className="absolute inset-x-7 bottom-14 max-w-[600px] text-[#fffdf8] sm:inset-x-12 sm:bottom-16">
+                <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-[#f7c96e]">{eyebrow}</p>
+                <h1 className="font-['Playfair_Display'] text-4xl font-bold leading-[1.05] sm:text-6xl">{title}</h1>
+                <p className="mt-4 max-w-md text-sm leading-6 text-[#f7f2e8] sm:text-base">{text}</p>
             </div>
         </div>
     )
